@@ -87,6 +87,13 @@ bool MimeMessage::write(QIODevice *device)
         return false;
     }
 
+    for (auto header : qAsConst(d->addHeaders)) {
+        data = header.first + MimeMessagePrivate::encodeData(d->encoding, header.second, true);
+        if (device->write(data) != data.size()) {
+            return false;
+        }
+    }
+
     data = QByteArrayLiteral("\r\nMIME-Version: 1.0\r\n");
     if (device->write(data) != data.size()) {
         return false;
@@ -171,6 +178,24 @@ void MimeMessage::addPart(MimePart *part)
     if (typeid(*d->content) == typeid(MimeMultiPart)) {
         ((MimeMultiPart*) d->content)->addPart(part);
     }
+}
+
+void MimeMessage::setAddHeaders(const QList<MimeMessage::TaddHeader> &ccList)
+{
+    Q_D(MimeMessage);
+    d->addHeaders = ccList;
+}
+
+QList<MimeMessage::TaddHeader> MimeMessage::addHeaders() const
+{
+    Q_D(const MimeMessage);
+    return d->addHeaders;
+}
+
+void MimeMessage::addAddHeader(const QByteArray &key, const QString &data)
+{
+    Q_D(MimeMessage);
+    d->addHeaders.append(qMakePair(key, data));
 }
 
 void MimeMessage::setHeaderEncoding(MimePart::Encoding hEnc)

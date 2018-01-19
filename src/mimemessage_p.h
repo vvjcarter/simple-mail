@@ -37,12 +37,11 @@ public:
     QList<EmailAddress> recipientsBcc;
     QString subject;
     EmailAddress sender;
+    QList<MimeMessage::TaddHeader> addHeaders;
     MimePart *content = nullptr;
     MimePart::Encoding encoding = MimePart::_8Bit;
     bool autoMimeContentCreated;
 };
-
 }
 
 #endif // MIMEMESSAGE_P_H
-

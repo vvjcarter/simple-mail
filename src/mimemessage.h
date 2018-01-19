@@ -53,6 +53,11 @@ public:
     void setSubject(const QString &subject);
     void addPart(MimePart* part);
 
+    typedef QPair<QByteArray, QString> TaddHeader;
+    void setAddHeaders(const QList<TaddHeader> &ccList);
+    QList<TaddHeader> addHeaders() const;
+    void addAddHeader(const QByteArray &key, const QString &data);
+
     void setHeaderEncoding(MimePart::Encoding);
 
     QString subject() const;
