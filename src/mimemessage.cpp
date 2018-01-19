@@ -88,7 +88,7 @@ bool MimeMessage::write(QIODevice *device)
     }
 
     for (auto header : qAsConst(d->addHeaders)) {
-        data = header.first + MimeMessagePrivate::encodeData(d->encoding, header.second, true);
+        data = "\r\n" + header.first + MimeMessagePrivate::encodeData(d->encoding, header.second, true);
         if (device->write(data) != data.size()) {
             return false;
         }
