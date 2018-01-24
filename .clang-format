@@ -1,0 +1,24 @@
+---
+BasedOnStyle:  WebKit
+Language:        Cpp
+AlignAfterOpenBracket: true
+AlwaysBreakTemplateDeclarations: true
+AllowShortFunctionsOnASingleLine: Inline
+BreakBeforeBraces: Linux
+BreakConstructorInitializers: AfterColon
+ColumnLimit: 200
+Standard:        Cpp11
+IndentWidth:     4
+TabWidth:        8
+UseTab:          Never
+PointerAlignment: Right
+SpacesInParentheses: false
+SpacesInAngles:  false
+SpaceInEmptyParentheses: false
+SpacesInCStyleCastParentheses: false
+SpaceAfterControlStatementKeyword: true
+SpaceBeforeAssignmentOperators: true
+ContinuationIndentWidth: 4
+# Only for newer clang-format versions
+MacroBlockBegin: BEGINTESTFUNCIMPL
+MacroBlockEnd: ENDTESTFUNCIMPL
